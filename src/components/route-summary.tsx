@@ -1,18 +1,23 @@
 import useRoutesApi from "../hooks/useRoutesApi";
 
 type Props = {
-  origin: TPos & { name: string };
-  destination: TPos & { name: string }
+  origin: TPos & { name?: string };
+  destination: TPos & { name?: string }
+  stopPoints: Array<TPos>
 }
 
-function RouteSummary({ origin, destination }: Props) {
+function RouteSummary({ origin, stopPoints, destination }: Props) {
   const {
     routes,
     setRouteIndex,
     selected,
     leg,
     loading
-  } = useRoutesApi(origin, destination)
+  } = useRoutesApi({
+    origin,
+    destination,
+    stopPoints
+  })
 
   if (loading) return (
     <>Loading...</>

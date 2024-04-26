@@ -1,7 +1,28 @@
 import { useMap, useMapsLibrary } from "@vis.gl/react-google-maps";
 import { useEffect, useState } from "react";
 
-function useRoutesApi(origin: TPos, destination: TPos) {
+type Props = {
+  origin: TPos
+  destination: TPos
+  stopPoints: Array<TPos>
+}
+
+function convertWaypoint(sellerLocations: Array<TPos>) {
+  const waypoints: Array<google.maps.DirectionsWaypoint> = []
+
+  sellerLocations.forEach(location => {
+    waypoints.push({
+      location,
+      stopover: true
+    })
+  })
+
+  return waypoints
+}
+
+function useRoutesApi({
+  origin, destination, stopPoints
+}: Props) {
   const map = useMap()
   const routesLibrary = useMapsLibrary('routes')
   const [directionsService, setDirectionsService] =
@@ -28,6 +49,7 @@ function useRoutesApi(origin: TPos, destination: TPos) {
     directionsService
       .route({
         origin,
+        waypoints: convertWaypoint(stopPoints),
         destination,
         travelMode: google.maps.TravelMode.DRIVING,
         provideRouteAlternatives: true

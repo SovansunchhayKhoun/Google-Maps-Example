@@ -26,10 +26,10 @@ p {
   margin: 0px;
 }
 .directions {
-  /* position: absolute; */
+  position: absolute;
   width: 275px;
-  /* top: 0px;
-  right: 0px; */
+  top: 0px;
+  right: 0px;
   padding: 1.25rem;
   padding-top: 0px;
   margin: 0.25rem;
