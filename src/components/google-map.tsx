@@ -8,11 +8,12 @@ function GoogleMap({ position }: Props) {
   return (
     <Map
       style={{
-        width: 400,
-        height: 400
+        width: 800,
+        height: 300
       }}
       defaultZoom={15}
-      center={position}
+      disableDefaultUI={true}
+      gestureHandling={"greedy"}
     >
       <Marker position={position} />
     </Map>
