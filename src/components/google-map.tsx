@@ -22,7 +22,17 @@ function GoogleMap({ startPos, endPos, waypoints }: Props) {
       defaultCenter={startPos}
     >
       <RouteSummary stopPoints={waypoints} origin={startPos} destination={endPos} />
-      {/* <Marker position={startPos} /> */}
+
+      <AdvancedMarker
+        position={startPos}
+        title={'Destination'}>
+        <Pin
+          borderColor={"none"}
+          background={"#f6e05e"}
+          scale={1.4}>
+          <IconUser color="black" />
+        </Pin>
+      </AdvancedMarker>
 
       <AdvancedMarker
         position={endPos}
@@ -32,16 +42,6 @@ function GoogleMap({ startPos, endPos, waypoints }: Props) {
           background={"#0054A6"}
           scale={1.4}>
           <IconMap2 color="white" />
-        </Pin>
-      </AdvancedMarker>
-      <AdvancedMarker
-        position={startPos}
-        title={'Destination'}>
-        <Pin
-          borderColor={"none"}
-          background={"#0054A6"}
-          scale={1.4}>
-          <IconUser color="white" />
         </Pin>
       </AdvancedMarker>
     </Map>
